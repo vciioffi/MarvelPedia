@@ -9,5 +9,14 @@
         android:id="@+id/welcomeFragment"
         android:name="com.example.marvelpedia.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" />
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_heroesFragment"
+            app:destination="@id/heroesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/heroesFragment"
+        android:name="com.example.marvelpedia.HeroesFragment"
+        android:label="fragment_heroes"
+        tools:layout="@layout/fragment_heroes" />
 </navigation>
