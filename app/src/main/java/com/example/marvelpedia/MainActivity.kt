@@ -18,10 +18,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        val retrofit = getRetrofit().create(HeroesApiService::class.java)
-        GlobalScope.launch {
-            println(getHereoesUc.invoke())
-        }
     }
 }
