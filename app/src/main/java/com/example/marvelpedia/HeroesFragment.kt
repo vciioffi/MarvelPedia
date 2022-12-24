@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +17,7 @@ import com.example.marvelpedia.R
 import com.example.marvelpedia.common.presentation.SharedViewModel
 import com.example.marvelpedia.databinding.FragmentHeroesBinding
 import com.example.marvelpedia.databinding.FragmentWelcomeBinding
+import com.example.marvelpedia.heroes.domain.model.HeroesModel
 import com.example.marvelpedia.heroes.presentation.HeroesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -38,7 +40,7 @@ class HeroesFragment : Fragment() {
     private var param2: String? = null
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    val adapter = HeroesAdapter(arrayListOf())
+    val adapter = HeroesAdapter(arrayListOf()){ heroeModel -> onItemClickListener(heroeModel) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,24 +86,7 @@ class HeroesFragment : Fragment() {
         })
         return binding.root
     }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HeroesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HeroesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun onItemClickListener(heroesModel: HeroesModel){
+        Toast.makeText(activity,heroesModel.name,Toast.LENGTH_SHORT).show()
     }
 }
