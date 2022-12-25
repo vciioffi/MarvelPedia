@@ -8,9 +8,8 @@ class HeroesRepository @Inject constructor(
     private val api: HeroesApiService
 ) {
 
-
-    suspend fun getHeroesFromApi(): List<HeroesDto> {
-        val response = api.getHeroesResponse()
+    suspend fun getHeroesFromApi(offset: Int): List<HeroesDto> {
+        val response = api.getHeroesResponse(offset)
         return response.body()?.data?.results ?: emptyList()
     }
 }

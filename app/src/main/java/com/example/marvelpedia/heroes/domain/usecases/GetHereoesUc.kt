@@ -8,8 +8,8 @@ import javax.inject.Inject
 class GetHereoesUc @Inject constructor(
     private val repository: HeroesRepository
 ) {
-    suspend fun invoke(): List<HeroesModel> =
-        repository.getHeroesFromApi().map {
+    suspend fun invoke(offset: Int): List<HeroesModel> =
+        repository.getHeroesFromApi(offset).map {
             it.toHeroesModel()
         }
 }
