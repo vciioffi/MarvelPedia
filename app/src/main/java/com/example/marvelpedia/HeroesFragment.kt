@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelpedia.R
@@ -88,5 +89,7 @@ class HeroesFragment : Fragment() {
     }
     private fun onItemClickListener(heroesModel: HeroesModel){
         Toast.makeText(activity,heroesModel.name,Toast.LENGTH_SHORT).show()
+        findNavController().navigate(R.id.action_heroesFragment_to_heroInfoFragment)
+
     }
 }

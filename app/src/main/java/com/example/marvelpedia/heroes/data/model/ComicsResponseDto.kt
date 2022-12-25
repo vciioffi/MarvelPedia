@@ -2,7 +2,7 @@ package com.example.marvelpedia.heroes.data.model
 import com.google.gson.annotations.SerializedName
 
 
-data class HeroesComicsResponseDto(
+data class ComicsResponseDto(
     @SerializedName("attributionHTML")
     val attributionHTML: String,
     @SerializedName("attributionText")
@@ -20,19 +20,19 @@ data class HeroesComicsResponseDto(
 )
 
  data class DataComics(
-    @SerializedName("count")
+     @SerializedName("count")
     val count: Int,
-    @SerializedName("limit")
+     @SerializedName("limit")
     val limit: Int,
-    @SerializedName("offset")
+     @SerializedName("offset")
     val offset: Int,
-    @SerializedName("results")
-    val results: List<Result>,
-    @SerializedName("total")
+     @SerializedName("results")
+    val results: List<ComicsDto>,
+     @SerializedName("total")
     val total: Int
 )
 
-data class Result(
+data class ComicsDto(
     @SerializedName("characters")
     val characters: Characters,
     @SerializedName("collectedIssues")
@@ -122,17 +122,6 @@ data class Date(
     val type: String
 )
 
-data class Events(
-    @SerializedName("available")
-    val available: Int,
-    @SerializedName("collectionURI")
-    val collectionURI: String,
-    @SerializedName("items")
-    val items: List<Item>,
-    @SerializedName("returned")
-    val returned: Int
-)
-
 data class Image(
     @SerializedName("extension")
     val extension: String,
@@ -147,23 +136,6 @@ data class Price(
     val type: String
 )
 
-data class Series(
-    @SerializedName("name")
-    val name: String,
-    @SerializedName("resourceURI")
-    val resourceURI: String
-)
-
-data class Stories(
-    @SerializedName("available")
-    val available: Int,
-    @SerializedName("collectionURI")
-    val collectionURI: String,
-    @SerializedName("items")
-    val items: List<ItemXXX>,
-    @SerializedName("returned")
-    val returned: Int
-)
 
 data class TextObject(
     @SerializedName("language")
@@ -174,28 +146,8 @@ data class TextObject(
     val type: String
 )
 
-data class Thumbnail(
-    @SerializedName("extension")
-    val extension: String,
-    @SerializedName("path")
-    val path: String
-)
-
-data class Url(
-    @SerializedName("type")
-    val type: String,
-    @SerializedName("url")
-    val url: String
-)
 
 data class Variant(
-    @SerializedName("name")
-    val name: String,
-    @SerializedName("resourceURI")
-    val resourceURI: String
-)
-
-data class Item(
     @SerializedName("name")
     val name: String,
     @SerializedName("resourceURI")
@@ -209,13 +161,4 @@ data class ItemX(
     val resourceURI: String,
     @SerializedName("role")
     val role: String
-)
-
-data class ItemXXX(
-    @SerializedName("name")
-    val name: String,
-    @SerializedName("resourceURI")
-    val resourceURI: String,
-    @SerializedName("type")
-    val type: String
 )

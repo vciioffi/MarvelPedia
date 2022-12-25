@@ -1,4 +1,4 @@
-package com.example.marvelpedia.heroes.data.db
+package com.example.marvelpedia.common.db
 
 data class Thumbnail (
      val path: String,
