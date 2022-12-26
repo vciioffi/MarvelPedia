@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -89,6 +90,8 @@ class HeroesFragment : Fragment() {
     }
     private fun onItemClickListener(heroesModel: HeroesModel){
         Toast.makeText(activity,heroesModel.name,Toast.LENGTH_SHORT).show()
+        sharedViewModel.getHeoresComcicsList(heroesModel.id)
+        sharedViewModel.uiState.value.heroeItem = heroesModel
         findNavController().navigate(R.id.action_heroesFragment_to_heroInfoFragment)
 
     }

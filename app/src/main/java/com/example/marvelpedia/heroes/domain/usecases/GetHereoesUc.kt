@@ -8,8 +8,17 @@ import javax.inject.Inject
 class GetHereoesUc @Inject constructor(
     private val repository: HeroesRepository
 ) {
-    suspend fun invoke(offset: Int): List<HeroesModel> =
-        repository.getHeroesFromApi(offset).map {
-            it.toHeroesModel()
+    suspend fun invoke(offset: Int): List<HeroesModel> {
+        val heroes = repository.getHeroesFromApi(offset)
+        return if (heroes.isNotEmpty()) {
+            repository.insertHeroes(heroes)
+            heroes.map {
+                it.toHeroesModel()
+            }
+        } else {
+            repository.getHeroesFromDb(offset).map {
+                it.toHeroesModel()
+            }
         }
+    }
 }

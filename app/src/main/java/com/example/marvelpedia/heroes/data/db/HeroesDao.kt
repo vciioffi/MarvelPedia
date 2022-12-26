@@ -11,11 +11,14 @@ interface HeroesDao {
     @Query("SELECT * FROM heroes")
     suspend fun getAll(): List<HeroesDb>
 
+    @Query("SELECT * FROM heroes LIMIT 40 OFFSET (:offset)")
+    suspend fun getHeroesList(offset: Int): List<HeroesDb>
+
     @Query("SELECT * FROM heroes WHERE id = (:id)")
     suspend fun getById(id: Int): HeroesDb
 
     @Insert(onConflict = REPLACE)
-    suspend fun insertAll(vararg heroes: HeroesDb)
+    suspend fun insertAll(heroes: List<HeroesDb>)
 
     @Insert(onConflict = REPLACE)
     suspend fun insertHeroe(heroe: HeroesDb)
