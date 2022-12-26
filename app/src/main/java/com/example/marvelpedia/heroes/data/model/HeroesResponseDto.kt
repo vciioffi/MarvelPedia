@@ -1,4 +1,4 @@
-package com.example.marvelpedia.heroes.data.db.model
+package com.example.marvelpedia.heroes.data.model
 import com.google.gson.annotations.SerializedName
 
 

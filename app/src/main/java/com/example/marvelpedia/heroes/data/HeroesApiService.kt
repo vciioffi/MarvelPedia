@@ -1,7 +1,7 @@
 package com.example.marvelpedia.heroes.data
 
-import com.example.marvelpedia.heroes.data.db.model.ComicsResponseDto
-import com.example.marvelpedia.heroes.data.db.model.HeroesResponseDto
+import com.example.marvelpedia.heroes.data.model.ComicsResponseDto
+import com.example.marvelpedia.heroes.data.model.HeroesResponseDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
