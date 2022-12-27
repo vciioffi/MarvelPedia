@@ -4,9 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.marvelpedia.ComicsFragment
-import com.example.marvelpedia.HeroesFragment
-import com.example.marvelpedia.WelcomeFragment
+import com.example.marvelpedia.heroes.presentation.views.ComicsFragment
+import com.example.marvelpedia.heroes.presentation.views.HeroesFragment
 
 class FragmentPageAdapter(
     fragmentManager: FragmentManager,

@@ -1,4 +1,4 @@
-package com.example.marvelpedia
+package com.example.marvelpedia.heroes.presentation.views
 
 import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -18,11 +17,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelpedia.R
 import com.example.marvelpedia.common.presentation.SharedViewModel
 import com.example.marvelpedia.databinding.FragmentHeroesBinding
-import com.example.marvelpedia.databinding.FragmentWelcomeBinding
 import com.example.marvelpedia.heroes.domain.model.HeroesModel
-import com.example.marvelpedia.heroes.presentation.HeroesAdapter
+import com.example.marvelpedia.heroes.presentation.adapters.HeroesAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 

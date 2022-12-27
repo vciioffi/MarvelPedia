@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.marvelpedia.common.db.AppDatabase
 import com.example.marvelpedia.common.utils.getRetrofit
-import com.example.marvelpedia.heroes.data.HeroesApiService
+import com.example.marvelpedia.heroes.data.HeroesComicsApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,8 +24,8 @@ class ApplicationModule {
 
     @Singleton
     @Provides
-    fun provideQuoteApiClient(retrofit: Retrofit):HeroesApiService{
-        return retrofit.create(HeroesApiService::class.java)
+    fun provideQuoteApiClient(retrofit: Retrofit):HeroesComicsApiService{
+        return retrofit.create(HeroesComicsApiService::class.java)
     }
 
     @Singleton

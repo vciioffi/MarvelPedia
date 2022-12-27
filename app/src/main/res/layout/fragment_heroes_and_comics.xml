@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HeroesAndComicsFragment">
+    tools:context=".heroes.presentation.views.HeroesAndComicsFragment">
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
@@ -16,6 +16,7 @@
            android:background="#00000000"
            android:layout_width="0dp"
            android:layout_height="50dp"
+           app:tabTextColor="@color/white"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +25,7 @@
            app:tabIndicator="@drawable/tab_indicator"
            app:tabIndicatorGravity="stretch"
            app:tabMode="fixed"
-           app:tabSelectedTextColor="@color/white" />
+           app:tabSelectedTextColor="@color/black" />
 
        <androidx.viewpager2.widget.ViewPager2
            android:id="@+id/viewPager_heroes_comics"
