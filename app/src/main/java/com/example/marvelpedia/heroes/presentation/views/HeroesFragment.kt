@@ -25,9 +25,6 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HeroesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
     val adapter = HeroesAdapter(arrayListOf()){ heroeModel -> onItemClickListener(heroeModel) }
