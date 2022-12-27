@@ -26,9 +26,8 @@ interface HeroesComicsApiService {
         @Query("apikey") apikey: String = "207b53a17f6d1aa4e34ab6d6ff6b8daa"
     ): Response<ComicsResponseDto>
 
-    @GET("comics?limit=40ts=1&hash=611542bb2034901e3c2ab1768e44d73d")
+    @GET("comics?limit=40&ts=1&apikey=207b53a17f6d1aa4e34ab6d6ff6b8daa&hash=611542bb2034901e3c2ab1768e44d73d")
     suspend fun getComicsResponse(
-        @Query("offset") offset: Int,
-        @Query("apikey") apikey: String = "207b53a17f6d1aa4e34ab6d6ff6b8daa"
-        ): Response<ComicsResponseDto>
+        @Query("offset") offset: Int
+    ): Response<ComicsResponseDto>
 }

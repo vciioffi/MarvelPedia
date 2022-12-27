@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 class HeroesFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    val adapter = HeroesAdapter(arrayListOf()){ heroeModel -> onItemClickListener(heroeModel) }
+    private val adapter = HeroesAdapter(arrayListOf()){ heroeModel -> onItemClickListener(heroeModel) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

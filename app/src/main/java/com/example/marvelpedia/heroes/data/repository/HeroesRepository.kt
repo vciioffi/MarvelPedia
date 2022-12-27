@@ -45,6 +45,7 @@ class HeroesRepository @Inject constructor(
 
     suspend fun getComicsFromApi(offset: Int): List<ComicsDto>{
         lateinit var response: Response<ComicsResponseDto>
+
         return try {
             response = api.getComicsResponse(offset)
             response.body()?.data?.results ?: emptyList()
