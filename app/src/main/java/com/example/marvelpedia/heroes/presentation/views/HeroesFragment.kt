@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -27,7 +28,8 @@ import kotlinx.coroutines.launch
 class HeroesFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    private val adapter = HeroesAdapter(arrayListOf()){ heroeModel -> onItemClickListener(heroeModel) }
+    private val adapter =
+        HeroesAdapter(arrayListOf()) { heroeModel -> onItemClickListener(heroeModel) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,15 +39,14 @@ class HeroesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val binding = FragmentHeroesBinding.inflate(inflater)
         binding.recyclerviewHeroes.adapter = adapter
         binding.recyclerviewHeroes.layoutManager = LinearLayoutManager(activity)
-
-        viewLifecycleOwner.lifecycleScope.launch(){
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                sharedViewModel.uiState.collect{
+        viewLifecycleOwner.lifecycleScope.launch() {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                sharedViewModel.uiState.collect {
                     adapter.addData(it.listHeroes?.toMutableList() ?: arrayListOf())
                 }
             }
@@ -67,10 +68,34 @@ class HeroesFragment : Fragment() {
                 }
             }
         })
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return searchByName(query)
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return true
+            }
+
+        })
+
         return binding.root
     }
-    private fun onItemClickListener(heroesModel: HeroesModel){
-        Toast.makeText(activity,heroesModel.name,Toast.LENGTH_SHORT).show()
+
+    private fun searchByName(name: String?): Boolean {
+        if (name != null) {
+            adapter.hereosList.clear()
+            sharedViewModel.getHeoresListByName(name)
+        } else {
+            adapter.hereosList.clear()
+            sharedViewModel.getHeoresList()
+        }
+        return true
+    }
+
+    private fun onItemClickListener(heroesModel: HeroesModel) {
+        Toast.makeText(activity, heroesModel.name, Toast.LENGTH_SHORT).show()
         sharedViewModel.getHeoresComcicsList(heroesModel.id)
         sharedViewModel.uiState.value.heroeItem = heroesModel
         findNavController().navigate(R.id.action_heroesAndComicsFragment_to_heroInfoFragment)

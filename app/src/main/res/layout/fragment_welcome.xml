@@ -23,28 +23,54 @@
 
         <Button
             android:id="@+id/btn_characters"
-            app:backgroundTint="@null"
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="  HEROES  "/>
+            android:layout_margin="10dp"
+            android:text="HEROES AND COMICS"
+            app:backgroundTint="@null" />
+
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:id="@+id/btnComics"
-            android:text="COMICS"
-            app:backgroundTint="@null"
-
-            />
-        <Button
             android:layout_width="match_parent"
-            android:layout_margin="10dp"
             android:layout_height="wrap_content"
-            android:text="CREATORS"
-            android:id="@+id/btnCreators"
+            android:layout_margin="10dp"
+            android:text="MOVIES (TODO)"
             app:backgroundTint="@null"
 
             />
+
+        <Button
+            android:id="@+id/btnCreators"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="WRITERS AND CREATORS (TODO)"
+            app:backgroundTint="@null"
+
+            />
+
+        <TextView
+            android:id="@+id/textViewPresentation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:text=" Application created by Víctor Cioffi\n \n You can check the source code by clicking on the next link \n \n Thank you so much :)"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/textViewLInk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:text="https://github.com/vciioffi/MarvelPedia"
+            android:gravity="center"
+            android:textColor="@color/blue_primary"
+            android:textSize="20sp" />
+
     </LinearLayout>
 </FrameLayout>
