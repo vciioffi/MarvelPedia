@@ -20,6 +20,12 @@ interface HeroesComicsApiService {
         @Query("apikey") apikey: String = "207b53a17f6d1aa4e34ab6d6ff6b8daa"
     ): Response<HeroesResponseDto>
 
+    @GET("characters?&ts=1&hash=611542bb2034901e3c2ab1768e44d73d")
+    suspend fun getHeroesByNameResponse(
+        @Query("nameStartsWith") name: String,
+        @Query("apikey") apikey: String = "207b53a17f6d1aa4e34ab6d6ff6b8daa"
+    ): Response<HeroesResponseDto>
+
     @GET("characters/{id}/comics?&ts=1&hash=611542bb2034901e3c2ab1768e44d73d")
     suspend fun getHeroesComicsResponse(
         @Path("id") id: Int,

@@ -27,6 +27,17 @@ class HeroesRepository @Inject constructor(
         }
     }
 
+    suspend fun getHeroesByNameFromApi(name:String): List<HeroesDto>{
+        lateinit var response: Response<HeroesResponseDto>
+        return try {
+            response = api.getHeroesByNameResponse(name)
+            response.body()?.data?.results ?: emptyList()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
+        }
+    }
+
     suspend fun getHeroesFromDb(offset: Int): List<HeroesDb> {
         return heroesDao.getHeroesList(offset)
     }
