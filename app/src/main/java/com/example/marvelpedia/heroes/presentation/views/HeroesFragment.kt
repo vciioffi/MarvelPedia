@@ -1,4 +1,4 @@
-package com.example.marvelpedia
+package com.example.marvelpedia.heroes.presentation.views
 
 import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -18,39 +17,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelpedia.R
 import com.example.marvelpedia.common.presentation.SharedViewModel
 import com.example.marvelpedia.databinding.FragmentHeroesBinding
-import com.example.marvelpedia.databinding.FragmentWelcomeBinding
 import com.example.marvelpedia.heroes.domain.model.HeroesModel
-import com.example.marvelpedia.heroes.presentation.HeroesAdapter
+import com.example.marvelpedia.heroes.presentation.adapters.HeroesAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HeroesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class HeroesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    val adapter = HeroesAdapter(arrayListOf()){ heroeModel -> onItemClickListener(heroeModel) }
+    private val adapter = HeroesAdapter(arrayListOf()){ heroeModel -> onItemClickListener(heroeModel) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -92,7 +73,7 @@ class HeroesFragment : Fragment() {
         Toast.makeText(activity,heroesModel.name,Toast.LENGTH_SHORT).show()
         sharedViewModel.getHeoresComcicsList(heroesModel.id)
         sharedViewModel.uiState.value.heroeItem = heroesModel
-        findNavController().navigate(R.id.action_heroesFragment_to_heroInfoFragment)
+        findNavController().navigate(R.id.action_heroesAndComicsFragment_to_heroInfoFragment)
 
     }
 }

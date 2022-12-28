@@ -1,4 +1,4 @@
-package com.example.marvelpedia
+package com.example.marvelpedia.heroes.presentation.views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.marvelpedia.R
 import com.example.marvelpedia.databinding.FragmentWelcomeBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,7 +39,7 @@ class WelcomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = FragmentWelcomeBinding.inflate(inflater)
         binding.btnCharacters.setOnClickListener {
-            findNavController().navigate(R.id.action_welcomeFragment_to_heroesFragment)
+            findNavController().navigate(R.id.action_welcomeFragment_to_heroesAndComicsFragment)
         }
         return binding.root
     }

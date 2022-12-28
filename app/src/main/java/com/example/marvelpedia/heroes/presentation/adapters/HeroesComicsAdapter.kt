@@ -1,4 +1,4 @@
-package com.example.marvelpedia.heroes.presentation
+package com.example.marvelpedia.heroes.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,4 +1,4 @@
-package com.example.marvelpedia
+package com.example.marvelpedia.heroes.presentation.views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,7 +14,7 @@ import coil.load
 import com.example.marvelpedia.common.presentation.SharedViewModel
 import com.example.marvelpedia.databinding.FragmentHeroInfoBinding
 import com.example.marvelpedia.heroes.domain.model.HeroesModel
-import com.example.marvelpedia.heroes.presentation.HeroesComicsAdapter
+import com.example.marvelpedia.heroes.presentation.adapters.HeroesComicsAdapter
 import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match

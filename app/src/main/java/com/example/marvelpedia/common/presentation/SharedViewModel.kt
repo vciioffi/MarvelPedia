@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.marvelpedia.heroes.domain.model.ComicsModel
 import com.example.marvelpedia.heroes.domain.model.HeroesModel
+import com.example.marvelpedia.heroes.domain.usecases.GetComicsUc
 import com.example.marvelpedia.heroes.domain.usecases.GetHereoesUc
 import com.example.marvelpedia.heroes.domain.usecases.GetHeroesComicsUc
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,8 @@ import javax.inject.Inject
 data class SharedViewModelUiState(
     var listHeroes: MutableList<HeroesModel>? = null,
     var listHeroesComics: MutableList<ComicsModel>? = null,
-    var heroeItem : HeroesModel? = null
+    var heroeItem : HeroesModel? = null,
+    var listComics: MutableList<ComicsModel>? = null
 )
 
 
@@ -25,26 +27,41 @@ data class SharedViewModelUiState(
 class SharedViewModel @Inject constructor(
 
     private val getHereoesUc: GetHereoesUc,
-    private val getHereoeComicsUc: GetHeroesComicsUc
+    private val getHereoeComicsUc: GetHeroesComicsUc,
+    private val getComicsUc: GetComicsUc
 
 ) : ViewModel() {
 
-    private var offset : Int = 0
+    private var offsetHeroes : Int = 0
+    private var offsetComics : Int = 0
     private val _uiState = MutableStateFlow(SharedViewModelUiState())
     val uiState: StateFlow<SharedViewModelUiState> = _uiState.asStateFlow()
 
     init {
         getHeoresList()
+        getComicsList()
     }
 
-     fun getHeoresList() {
+    private fun getComicsList() {
+
         viewModelScope.launch {
             _uiState.update {
                 it.copy(
-                    listHeroes = getHereoesUc.invoke(offset).toMutableList()
+                    listComics = getComicsUc.invoke(offsetComics).toMutableList()
                 )
             }
-            offset+=40
+            offsetComics+=40
+        }
+    }
+
+    fun getHeoresList() {
+        viewModelScope.launch {
+            _uiState.update {
+                it.copy(
+                    listHeroes = getHereoesUc.invoke(offsetHeroes).toMutableList()
+                )
+            }
+            offsetHeroes+=40
         }
     }
 

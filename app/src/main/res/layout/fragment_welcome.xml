@@ -7,7 +7,7 @@
     android:background="@drawable/gradient_background"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
-    tools:context=".WelcomeFragment">
+    tools:context=".heroes.presentation.views.WelcomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

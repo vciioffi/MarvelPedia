@@ -1,18 +1,18 @@
 package com.example.marvelpedia.heroes.data.repository
 
 import com.example.marvelpedia.common.utils.toHeroesDb
-import com.example.marvelpedia.common.utils.toHeroesModel
-import com.example.marvelpedia.heroes.data.HeroesApiService
+import com.example.marvelpedia.heroes.data.HeroesComicsApiService
 import com.example.marvelpedia.heroes.data.db.HeroesDao
 import com.example.marvelpedia.heroes.data.db.HeroesDb
 import com.example.marvelpedia.heroes.data.model.ComicsDto
+import com.example.marvelpedia.heroes.data.model.ComicsResponseDto
 import com.example.marvelpedia.heroes.data.model.HeroesDto
 import com.example.marvelpedia.heroes.data.model.HeroesResponseDto
 import retrofit2.Response
 import javax.inject.Inject
 
 class HeroesRepository @Inject constructor(
-    private val api: HeroesApiService,
+    private val api: HeroesComicsApiService,
     private val heroesDao: HeroesDao
 ) {
 
@@ -41,5 +41,17 @@ class HeroesRepository @Inject constructor(
     suspend fun getHeroesComicsFromApi(id: Int): List<ComicsDto> {
         val response = api.getHeroesComicsResponse(id)
         return response.body()?.data?.results ?: emptyList()
+    }
+
+    suspend fun getComicsFromApi(offset: Int): List<ComicsDto>{
+        lateinit var response: Response<ComicsResponseDto>
+
+        return try {
+            response = api.getComicsResponse(offset)
+            response.body()?.data?.results ?: emptyList()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
+        }
     }
 }
