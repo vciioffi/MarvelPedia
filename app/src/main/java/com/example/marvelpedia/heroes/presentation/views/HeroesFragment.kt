@@ -45,7 +45,7 @@ class HeroesFragment : Fragment() {
         binding.recyclerviewHeroes.adapter = adapter
         binding.recyclerviewHeroes.layoutManager = LinearLayoutManager(activity)
         viewLifecycleOwner.lifecycleScope.launch() {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 sharedViewModel.uiState.collect {
                     adapter.addData(it.listHeroes?.toMutableList() ?: arrayListOf())
                 }

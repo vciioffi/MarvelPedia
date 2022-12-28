@@ -104,4 +104,5 @@ class ComicsFragment : Fragment() {
         }
         dialog?.show()
     }
+
 }
