@@ -69,7 +69,7 @@
             android:paddingLeft="20dp"
             android:text="https://github.com/vciioffi/MarvelPedia"
             android:gravity="center"
-            android:textColor="@color/material_dynamic_secondary20"
+            android:textColor="@color/blue_primary"
             android:textSize="20sp" />
 
     </LinearLayout>
