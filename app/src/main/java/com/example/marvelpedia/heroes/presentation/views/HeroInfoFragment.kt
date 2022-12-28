@@ -1,6 +1,7 @@
 package com.example.marvelpedia.heroes.presentation.views
 
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -49,18 +50,30 @@ class HeroInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var heroe:HeroesModel? = sharedViewModel.uiState.value.heroeItem?.copy()
+        var heroe: HeroesModel? = sharedViewModel.uiState.value.heroeItem?.copy()
 
         val binding = FragmentHeroInfoBinding.inflate(inflater)
         binding.rvHeroComics.adapter = adapter
-        binding.rvHeroComics.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+        binding.rvHeroComics.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        binding.imgItem.load((heroe?.thumbnail?.path+"."+heroe?.thumbnail?.extension).replace("http","https"))
+        binding.imgItem.load(
+            (heroe?.thumbnail?.path + "." + heroe?.thumbnail?.extension).replace(
+                "http",
+                "https"
+            )
+        )
         binding.textViewName.text = heroe?.name
-        binding.textViewDescription.text = heroe?.description
-        viewLifecycleOwner.lifecycleScope.launch(){
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                sharedViewModel.uiState.collect{
+        if (heroe?.description?.isNotEmpty() == true)
+            binding.textViewDescription.text = heroe.description
+        else
+            binding.textViewDescription.apply {
+                this.gravity = Gravity.CENTER
+                this.text = "This hero doesn't contain a description"
+            }
+        viewLifecycleOwner.lifecycleScope.launch() {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                sharedViewModel.uiState.collect {
                     adapter.heroesComics = (it.listHeroesComics ?: arrayListOf())
                     adapter.notifyDataSetChanged()
                 }
