@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -57,7 +58,31 @@ class ComicsFragment : Fragment() {
             }
         }
 
+        binding.searchViewComics.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return searchByName(query)
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return true
+            }
+
+        })
+
         return binding.root
+    }
+
+
+    private fun searchByName(name: String?): Boolean {
+        if (name != null) {
+            adapter.comicsList.clear()
+            sharedViewModel.getComicsListByName(name)
+            println("fdeasa "+ sharedViewModel.uiState.value.listComics)
+        } else {
+            adapter.comicsList.clear()
+            sharedViewModel.getComicsList()
+        }
+        return true
     }
 
     private fun onItemClickListener(comicsModel: ComicsModel) {
@@ -74,7 +99,7 @@ class ComicsFragment : Fragment() {
         )
 
         title?.text = (comicsModel.title)
-        btn?.setOnClickListener{
+        btn?.setOnClickListener {
             dialog.hide()
         }
         dialog?.show()

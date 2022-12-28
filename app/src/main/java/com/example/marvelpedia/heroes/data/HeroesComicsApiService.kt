@@ -36,4 +36,11 @@ interface HeroesComicsApiService {
     suspend fun getComicsResponse(
         @Query("offset") offset: Int
     ): Response<ComicsResponseDto>
+
+    @GET("comics?&ts=1&hash=611542bb2034901e3c2ab1768e44d73d")
+    suspend fun getComicsByNameResponse(
+        @Query("titleStartsWith") name: String,
+        @Query("apikey") apikey: String = "207b53a17f6d1aa4e34ab6d6ff6b8daa"
+    ): Response<ComicsResponseDto>
+
 }

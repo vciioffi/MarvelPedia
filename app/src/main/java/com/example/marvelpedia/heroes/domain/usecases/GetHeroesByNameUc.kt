@@ -5,7 +5,7 @@ import com.example.marvelpedia.heroes.data.repository.HeroesRepository
 import com.example.marvelpedia.heroes.domain.model.HeroesModel
 import javax.inject.Inject
 
-class GetHeroesByName @Inject constructor(
+class GetHeroesByNameUc @Inject constructor(
     private val repository: HeroesRepository
 ) {
     suspend fun invoke(name: String): List<HeroesModel> {

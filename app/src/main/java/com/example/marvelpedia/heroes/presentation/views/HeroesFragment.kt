@@ -87,7 +87,6 @@ class HeroesFragment : Fragment() {
         if (name != null) {
             adapter.hereosList.clear()
             sharedViewModel.getHeoresListByName(name)
-            println("fesa " + sharedViewModel.uiState.value.listHeroes)
         } else {
             adapter.hereosList.clear()
             sharedViewModel.getHeoresList()

@@ -49,6 +49,7 @@ class HeroesRepository @Inject constructor(
         heroesDao.insertAll(heroesdb)
     }
 
+    //TODO safe call
     suspend fun getHeroesComicsFromApi(id: Int): List<ComicsDto> {
         val response = api.getHeroesComicsResponse(id)
         return response.body()?.data?.results ?: emptyList()
@@ -56,12 +57,23 @@ class HeroesRepository @Inject constructor(
 
     suspend fun getComicsFromApi(offset: Int): List<ComicsDto>{
         lateinit var response: Response<ComicsResponseDto>
-
         return try {
             response = api.getComicsResponse(offset)
             response.body()?.data?.results ?: emptyList()
         } catch (e: Exception) {
             e.printStackTrace()
+            //TODO fetch data fram db
+            emptyList()
+        }
+    }
+    suspend fun getComicsByNameFromApi(name:String): List<ComicsDto>{
+        lateinit var response: Response<ComicsResponseDto>
+        return try {
+            response = api.getComicsByNameResponse(name)
+            response.body()?.data?.results ?: emptyList()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            //TODO fetch data fram db
             emptyList()
         }
     }

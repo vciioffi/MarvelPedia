@@ -4,10 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.marvelpedia.heroes.domain.model.ComicsModel
 import com.example.marvelpedia.heroes.domain.model.HeroesModel
-import com.example.marvelpedia.heroes.domain.usecases.GetComicsUc
-import com.example.marvelpedia.heroes.domain.usecases.GetHereoesUc
-import com.example.marvelpedia.heroes.domain.usecases.GetHeroesByName
-import com.example.marvelpedia.heroes.domain.usecases.GetHeroesComicsUc
+import com.example.marvelpedia.heroes.domain.usecases.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -31,7 +28,8 @@ class SharedViewModel @Inject constructor(
     private val getHereoesUc: GetHereoesUc,
     private val getHereoeComicsUc: GetHeroesComicsUc,
     private val getComicsUc: GetComicsUc,
-    private val getHeroesByName: GetHeroesByName
+    private val getHeroesByName: GetHeroesByNameUc,
+    private val getComicsByName: GetComicsByNameUc
 
 ) : ViewModel() {
 
@@ -45,7 +43,7 @@ class SharedViewModel @Inject constructor(
         getComicsList()
     }
 
-    private fun getComicsList() {
+     fun getComicsList() {
 
         viewModelScope.launch {
             _uiState.update {
@@ -77,6 +75,17 @@ class SharedViewModel @Inject constructor(
             }
             offsetHeroes=0
 
+        }
+    }
+
+    fun getComicsListByName(title:String) {
+        viewModelScope.launch {
+            _uiState.update {
+                it.copy(
+                    listComics = getComicsByName.invoke(title).toMutableList()
+                )
+            }
+            offsetComics=0
         }
     }
 
