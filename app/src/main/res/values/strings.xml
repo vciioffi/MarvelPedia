@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MarvelPedia</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="apikey">207b53a17f6d1aa4e34ab6d6ff6b8daa</string>
 </resources>
