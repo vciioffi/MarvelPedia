@@ -19,7 +19,7 @@ An application that makes available to the user information related to the marve
 - Room TypeConverters to store complex data easily
 - Dependecy Injection 
 - Clean architecture
-- Different android components (SearchView, ProgressBar, ViewPager2, DialogFragment)
+- Different android components (SearchView, TabLayout, ViewPager2, DialogFragment)
 
 #### Next Steps:
 - Add new features using the new APIs. A new whole feature about MCU
