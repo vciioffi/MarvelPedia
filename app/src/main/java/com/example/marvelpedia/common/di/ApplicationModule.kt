@@ -31,9 +31,13 @@ class ApplicationModule {
     @Singleton
     @Provides
     fun provideRoom(@ApplicationContext context: Context) =
-        Room.databaseBuilder(context, AppDatabase::class.java, "marvel_pedia_db").build()
+        Room.databaseBuilder(context, AppDatabase::class.java, "marvel_pedia_db").fallbackToDestructiveMigration().build()
 
     @Singleton
     @Provides
-    fun provideQuoteDao(db: AppDatabase) = db.getHeroesDao()
+    fun provideHeroesDao(db: AppDatabase) = db.getHeroesDao()
+
+    @Singleton
+    @Provides
+    fun provideComicsDao(db: AppDatabase) = db.getComicsDao()
 }

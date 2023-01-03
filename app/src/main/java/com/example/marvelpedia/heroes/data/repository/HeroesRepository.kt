@@ -1,7 +1,10 @@
 package com.example.marvelpedia.heroes.data.repository
 
+import com.example.marvelpedia.common.utils.toComicsDb
 import com.example.marvelpedia.common.utils.toHeroesDb
 import com.example.marvelpedia.heroes.data.HeroesComicsApiService
+import com.example.marvelpedia.heroes.data.db.ComicsDao
+import com.example.marvelpedia.heroes.data.db.ComicsDb
 import com.example.marvelpedia.heroes.data.db.HeroesDao
 import com.example.marvelpedia.heroes.data.db.HeroesDb
 import com.example.marvelpedia.heroes.data.model.ComicsDto
@@ -13,7 +16,8 @@ import javax.inject.Inject
 
 class HeroesRepository @Inject constructor(
     private val api: HeroesComicsApiService,
-    private val heroesDao: HeroesDao
+    private val heroesDao: HeroesDao,
+    private val comicsDao: ComicsDao
 ) {
 
     suspend fun getHeroesFromApi(offset: Int): List<HeroesDto> {
@@ -48,6 +52,12 @@ class HeroesRepository @Inject constructor(
         }
         heroesDao.insertAll(heroesdb)
     }
+    suspend fun insertComics(comics: List<ComicsDto>) {
+        var comicsDb = comics.map {
+            it.toComicsDb()
+        }
+        comicsDao.insertAll(comicsDb)
+    }
 
     //TODO safe call
     suspend fun getHeroesComicsFromApi(id: Int): List<ComicsDto> {
@@ -62,10 +72,13 @@ class HeroesRepository @Inject constructor(
             response.body()?.data?.results ?: emptyList()
         } catch (e: Exception) {
             e.printStackTrace()
-            //TODO fetch data fram db
             emptyList()
         }
     }
+    suspend fun getComicsFromDb(offset: Int): List<ComicsDb> {
+        return comicsDao.getComicsList(offset)
+    }
+
     suspend fun getComicsByNameFromApi(name:String): List<ComicsDto>{
         lateinit var response: Response<ComicsResponseDto>
         return try {

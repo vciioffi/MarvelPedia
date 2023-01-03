@@ -9,7 +9,7 @@ interface ComicsDao {
     suspend fun getAll(): List<ComicsDb>
 
     @Query("SELECT * FROM comics LIMIT 40 OFFSET (:offset)")
-    suspend fun geComicsList(offset: Int): List<ComicsDb>
+    suspend fun getComicsList(offset: Int): List<ComicsDb>
 
     @Query("SELECT * FROM comics WHERE id = (:id)")
     suspend fun getById(id: Int): ComicsDb
